@@ -17,5 +17,4 @@ public class ValidatorUniqueId {
             return true;
         }
     }
-
 }
