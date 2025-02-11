@@ -22,8 +22,8 @@ class PersonCreatorTest {
         //given
         String[][] arraysPerson = factory.createIllegalArguments(KindArgument.ROLE);
         String[][] arraysPersonTrue = factory.createIllegalArguments(KindArgument.ALL);
-        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(arraysPerson));
-        PersonCreator personCreatorTrue = new PersonCreator(new SimpleFactory(), Arrays.stream(arraysPersonTrue));
+        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(arraysPerson).toList());
+        PersonCreator personCreatorTrue = new PersonCreator(new SimpleFactory(), Arrays.stream(arraysPersonTrue).toList());
 
         //when
 
@@ -42,7 +42,7 @@ class PersonCreatorTest {
         String expectIdSecond = secondPerson[1];
         String identificationExpect = firstPerson[4];
         String expectIdentSecondPerson = secondPerson[4];
-        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas));
+        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas).toList());
 
         //when
         personCreator.createListPerson();
@@ -64,7 +64,7 @@ class PersonCreatorTest {
     public void shouldNotThrowExceptionIfIdNotValid() {
         //given
         String[][] mas = factory.createIllegalArguments(KindArgument.ID);
-        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas));
+        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas).toList());
 
         //when
 
@@ -76,7 +76,7 @@ class PersonCreatorTest {
     public void shouldNotThrowExceptionIfNameIsEmpty() {
         //given
         String[][] mas = factory.createIllegalArguments(KindArgument.NAME);
-        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas));
+        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas).toList());
 
         //when
 
@@ -88,7 +88,7 @@ class PersonCreatorTest {
     public void shouldNotThrowNotCorrectArgumentException() {
         //given
         String[][] mas = factory.createIllegalArguments(KindArgument.UNIQUE);
-        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas));
+        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas).toList());
 
         //when
 
@@ -102,7 +102,7 @@ class PersonCreatorTest {
     public void shouldNotThrowNotCorrectArgumentSalary() {
         //given
         String[][] mas = factory.createIllegalArguments(KindArgument.SALARY);
-        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas));
+        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas).toList());
 
         //when
 
@@ -116,7 +116,7 @@ class PersonCreatorTest {
     public void shouldNotThrowIfSalaryNegative() {
         //given
         String[][] mas = factory.createIllegalArguments(KindArgument.MINUS);
-        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas));
+        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas).toList());
 
         //when
 
@@ -129,7 +129,7 @@ class PersonCreatorTest {
     public void shouldNotThrowIfIdentificationEmpty() {
         //given
         String[][] mas = factory.createIllegalArguments(KindArgument.IDENTIFICATION);
-        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas));
+        PersonCreator personCreator = new PersonCreator(new SimpleFactory(), Arrays.stream(mas).toList());
 
         //when
 

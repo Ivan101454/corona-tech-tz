@@ -14,16 +14,16 @@ class InputArgumentsHandlerTest {
     @Test
     public void shouldReceiveSortArguments() {
         //given
-        InputArgumentsHandler handler = new InputArgumentsHandler();
         ArgumentsData data = new ArgumentsData();
         String[] args = data.getArrayOfAllArguments();
+        InputArgumentsHandler handler = new InputArgumentsHandler(args);
         String sortExpect = args[0].split("=")[1].trim();
         String orderExpect = args[1].split("=")[1].trim();
         String outputExpect = args[2].split("=")[1].trim();
         String pathExpect = args[3].split("=")[1].trim();
 
         //when
-        Map<String, String> map = handler.handler(args);
+        Map<String, String> map = handler.handler();
         String sortActual = map.get("sort");
         String orderActual = map.get("order");
         String outputActual = map.get("output");
@@ -39,15 +39,43 @@ class InputArgumentsHandlerTest {
     @Test
     public void shouldNotThrowExceptionWithNotCompletePath() {
         //given
-        InputArgumentsHandler handler = new InputArgumentsHandler();
         ArgumentsData data = new ArgumentsData();
         String[] args = data.getArrayOfWithNotCompletePath();
+        InputArgumentsHandler handler = new InputArgumentsHandler(args);
 
         //when
 
 
         //then
-        assertDoesNotThrow(() -> handler.handler(args));
+        assertDoesNotThrow(() -> handler.handler());
+    }
+
+    @Test
+    public void shouldNotThrowExceptionWithNotSuchSortParameter() {
+        //given
+        ArgumentsData data = new ArgumentsData();
+        String[] args = data.getArrayOfWithNotSuchSortParameter();
+        InputArgumentsHandler handler = new InputArgumentsHandler(args);
+
+        //when
+
+
+        //then
+        assertDoesNotThrow(handler::handler);
+    }
+
+    @Test
+    public void shouldNotThrowExceptionWithNotSuchOrderParameter() {
+        //given
+        ArgumentsData data = new ArgumentsData();
+        String[] args = data.getArrayOfWithNotSuchOrderParameter();
+        InputArgumentsHandler handler = new InputArgumentsHandler(args);
+
+        //when
+
+
+        //then
+        assertDoesNotThrow(handler::handler);
     }
 
 }

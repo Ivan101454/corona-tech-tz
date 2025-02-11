@@ -9,12 +9,13 @@ import by.ivan101454.corona.util.ValidatorUniqueId;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class PersonCreator {
 
     private final SimpleFactory simpleFactory;
-    private final Stream<String[]> stream;
+    private final List<String[]> list;
     private final ArrayList<Person> listOfCorrectEntity = new ArrayList<>();
     private final ArrayList<String> listOfIncorrectEntity = new ArrayList<>();
     private final IncorrectStringCreator incorrect = new IncorrectStringCreator();
@@ -29,14 +30,14 @@ public class PersonCreator {
         return listOfIncorrectEntity;
     }
 
-    public PersonCreator(SimpleFactory simpleFactory, Stream<String[]> stream) {
+    public PersonCreator(SimpleFactory simpleFactory, List<String[]> list) {
         this.simpleFactory = simpleFactory;
-        this.stream = stream;
+        this.list = list;
     }
 
     public void createListPerson() {
-
-        stream.forEach(mas -> {
+        listOfIncorrectEntity.add("Некорректные данные: ");
+        list.forEach(mas -> {
             Role role;
             int id;
             String name;
@@ -144,11 +145,11 @@ public class PersonCreator {
                 }
             }
 
-            Person person = simpleFactory.createPerson(role, mas[0]);
+            Person person = simpleFactory.createPerson(role, mas[4]);
             person.setId(id);
             person.setName(name);
             person.setSalary(salary);
-            person.setIdentification(identification);
+            person.setRole(role);
             listOfCorrectEntity.add(person);
         });
     }

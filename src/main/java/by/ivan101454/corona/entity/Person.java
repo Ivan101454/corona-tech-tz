@@ -45,4 +45,12 @@ public abstract class Person {
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+        String stringRole = getRole().toString().toLowerCase();
+        String upperCaseLiteral = stringRole.substring(0, 1).toUpperCase();
+        String endLiteral = stringRole.substring(1);
+        return upperCaseLiteral + endLiteral + ", " + getId() + ", " + getName() + ", " + getSalary();
+    }
 }
