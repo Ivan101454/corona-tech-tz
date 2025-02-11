@@ -3,7 +3,6 @@ package by.ivan101454.corona.entity;
 import by.ivan101454.corona.enums.Role;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 public abstract class Person {
 

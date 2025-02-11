@@ -1,6 +1,5 @@
 package by.ivan101454.corona.entity;
 
-import java.util.UUID;
 
 public class Employee extends Person {
 

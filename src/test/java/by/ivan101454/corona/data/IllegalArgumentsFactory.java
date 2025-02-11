@@ -12,6 +12,15 @@ public class IllegalArgumentsFactory {
                     {"Manager", "1", "Jane Smith", "5000", "HR" },
                     {"Employee", "101", "John Doe", "3000", "1" },
             };
+            case ID -> result = new String[][]{{"Manager", "12I3", "Jane Smith", "5000", "HR" }};
+            case UNIQUE -> result = new String[][]{
+                    {"Manager", "1", "Jane Smith", "5000", "HR" },
+                    {"Employee", "1", "John Doe", "3000", "1" },
+            };
+            case SALARY -> result = new String[][]{{"Manager", "1", "Jane Smith", "S000", "HR" }};
+            case MINUS -> result = new String[][]{{"Manager", "1", "Jane Smith", "-1000", "HR" }};
+            case NAME -> result = new String[][]{{"Manager", "1", "", "-1000", "HR" }};
+            case IDENTIFICATION -> result = new String[][]{{"Manager", "1", "Jane Smith", "5000", "" }};
             default -> result = null;
         }
         return result;
