@@ -14,6 +14,15 @@ public class WriterResultHandler {
      * @param result результирующая строка
      */
     public void write(String path, String result) {
+        File directory = new File(path);
+        if (!directory.exists()) {
+            if (directory.mkdirs()) {
+                System.out.println("Директория создана: " + path);
+            } else {
+                System.out.println("Не удалось создать директорию: " + path);
+                return;
+            }
+        }
         File file = Paths.get(path + "/output.txt").toFile();
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             bw.write(result);
