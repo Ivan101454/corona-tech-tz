@@ -23,10 +23,10 @@ public class InputArgumentsHandler {
      */
     public Map<String, String> handler() {
         Map<String, String> mapOfArgs = new HashMap<>();
-        Pattern patternSort = Pattern.compile("--sort=\\S+");
-        Pattern patternOrder = Pattern.compile("--order=\\S+");
-        Pattern patternOutput = Pattern.compile("--output=\\S+");
-        Pattern patternPath = Pattern.compile("--path=\\S+");
+        Pattern patternSort = Pattern.compile("--sort=(\\S+)");
+        Pattern patternOrder = Pattern.compile("--order=(\\S+)");
+        Pattern patternOutput = Pattern.compile("--output=(\\S+)");
+        Pattern patternPath = Pattern.compile("--path=(.+)");
 
         for (String arg : args) {
             Matcher matcherSort = patternSort.matcher(arg);

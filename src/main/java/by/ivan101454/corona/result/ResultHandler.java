@@ -41,6 +41,7 @@ public class ResultHandler {
                 System.out.println(identity + ", " + averageSalary.get(identity) + "\n" + personInString);
             });
             incorrectEntity.forEach(System.out::println);
+            System.out.println("Работа завершена");
         } else {
             if (OutputParameter.valueOf(handler.get("output").toUpperCase()).equals(OutputParameter.FILE)) {
                 StringBuilder sb = new StringBuilder();
@@ -54,6 +55,7 @@ public class ResultHandler {
                 String path = handler.get("path");
                 WriterResultHandler wh = new WriterResultHandler();
                 wh.write(path, result);
+                System.out.println("Работа завершена");
             }
         }
     }
