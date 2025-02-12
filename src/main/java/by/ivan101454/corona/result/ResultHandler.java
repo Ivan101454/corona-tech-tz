@@ -25,6 +25,10 @@ public class ResultHandler {
         this.handler = inputArgumentsHandler.handler();
     }
 
+    /**
+     * Метода производит формирование вывода данных о рабониках в нужном формате,
+     * определяет вывод в файл или на консоль, высчитывет среднею заплату по отделу
+     */
     public void getResult() {
         List<Person> people = sortIfRequire();
         Map<String, Double> averageSalary = people.stream()
@@ -54,12 +58,22 @@ public class ResultHandler {
         }
     }
 
+    /**
+     * Метод проверяет наличие параметров для сортировки и если они есть, вызывает sortEmployeesByParameter(String sort, String order)
+     * @return возвращает либо отсортировный список, либо нет, если запроса на сортировку не было
+     */
     private List<Person> sortIfRequire() {
         if (handler.containsKey("sort")) {
             return sortEmployeesByParameter(handler.get("sort"), handler.get("order"));
         } else return personCreator.getListOfCorrectEntity();
     }
 
+    /**
+     * Метод производит сортировку списка работников, если в аргументах присутствует параметры --sort и --order
+     * @param sort --sort=name - сортировка по имени --sort=salary - сортировка по окладу
+     * @param order --order=asc - порядок сортировки по возрастающей --order=desc - порядок сортировки по убывающей
+     * @return возвращает список отсортированных работников с менеджарами, которые не сортируются
+     */
     private List<Person> sortEmployeesByParameter(String sort, String order) {
         List<Person> sortedEmployees = new ArrayList<>();
         SortParameter sortParameter = SortParameter.valueOf(sort.toUpperCase());

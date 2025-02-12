@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class PersonCreator {
 
@@ -35,6 +34,10 @@ public class PersonCreator {
         this.list = list;
     }
 
+    /**
+     * Метод проходится по полученным данным о работниках, если данные валидны создает сущность
+     * и добавляет в список listOfCorrectEntity, если нет добавляет запись в список некорректных данных listOfIncorrectEntity
+     */
     public void createListPerson() {
         listOfIncorrectEntity.add("Некорректные данные: ");
         list.forEach(mas -> {
@@ -145,7 +148,7 @@ public class PersonCreator {
                 }
             }
 
-            Person person = simpleFactory.createPerson(role, mas[4]);
+            Person person = simpleFactory.createPerson(role, identification);
             person.setId(id);
             person.setName(name);
             person.setSalary(salary);

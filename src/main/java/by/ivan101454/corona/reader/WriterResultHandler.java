@@ -8,9 +8,13 @@ import java.nio.file.Paths;
 
 public class WriterResultHandler {
 
+    /**
+     * Метода записывает файл с результатом приложени
+     * @param path путь, где должен быть создан файл
+     * @param result результирующая строка
+     */
     public void write(String path, String result) {
-        String projectPath = System.getProperty("user.dir");
-        File file = Paths.get(projectPath + path + "/output.txt").toFile();
+        File file = Paths.get(path + "/output.txt").toFile();
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             bw.write(result);
         } catch (IOException e) {

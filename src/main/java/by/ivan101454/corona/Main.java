@@ -1,4 +1,4 @@
-package by.ivan101454;
+package by.ivan101454.corona;
 
 import by.ivan101454.corona.factory.PersonCreator;
 import by.ivan101454.corona.factory.SimpleFactory;

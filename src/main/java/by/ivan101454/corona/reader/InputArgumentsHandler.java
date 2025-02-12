@@ -17,6 +17,10 @@ public class InputArgumentsHandler {
         this.args = args;
     }
 
+    /**
+     * Метод парсит переданные аргументы в метода main при запуске
+     * @return возвращает Map коллекцию где ключ фоаг аргумента, значение его значение
+     */
     public Map<String, String> handler() {
         Map<String, String> mapOfArgs = new HashMap<>();
         Pattern patternSort = Pattern.compile("--sort=\\S+");
