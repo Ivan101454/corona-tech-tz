@@ -16,5 +16,6 @@ public class ArgumentsData {
 
     public String[] getArrayOfWithNotSuchOrderParameter() {
         return new String[]{"--sort=name", "--order=not", "--output=file", "--path=/src/main/resources"};
+
     }
 }

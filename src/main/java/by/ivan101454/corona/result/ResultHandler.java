@@ -59,7 +59,7 @@ public class ResultHandler {
     private List<Person> sortEmployeesByParameter(String sort, String order) {
         List<Person> sortedEmployees = new ArrayList<>();
         SortParameter sortParameter = SortParameter.valueOf(sort.toUpperCase());
-        OrderSort orderSort = OrderSort.valueOf(order);
+        OrderSort orderSort = OrderSort.valueOf(order.toUpperCase());
 
         ArrayList<Person> entities = personCreator.getListOfCorrectEntity();
         List<Person> listOfEmployees = entities.stream().filter(empl -> empl.getRole() == Role.EMPLOYEE).toList();

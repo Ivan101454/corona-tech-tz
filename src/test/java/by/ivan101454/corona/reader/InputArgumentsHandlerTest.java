@@ -47,7 +47,7 @@ class InputArgumentsHandlerTest {
 
 
         //then
-        assertDoesNotThrow(() -> handler.handler());
+        assertDoesNotThrow(handler::handler);
     }
 
     @Test

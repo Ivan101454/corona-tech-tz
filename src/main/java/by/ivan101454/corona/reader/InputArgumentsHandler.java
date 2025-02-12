@@ -1,5 +1,6 @@
 package by.ivan101454.corona.reader;
 
+import by.ivan101454.corona.enums.OrderSort;
 import by.ivan101454.corona.enums.SortParameter;
 import by.ivan101454.corona.exception.NotCorrectArgumentException;
 
@@ -38,7 +39,7 @@ public class InputArgumentsHandler {
             if (matcherOrder.matches()) {
                 try {
                     String order = arg.split("=")[1].trim();
-                    SortParameter sortParameter = SortParameter.valueOf(order.toUpperCase());
+                    OrderSort orderSort = OrderSort.valueOf(order.toUpperCase());
                     mapOfArgs.put("order", order);
                 } catch (IllegalArgumentException e) {
                     System.err.println("Ошибка: некорректное значение порядка сортировки" + ". Подробности: " + e.getMessage());
