@@ -33,17 +33,21 @@ public class ResultHandler {
         List<String> incorrectEntity = personCreator.getListOfIncorrectEntity();
         if (!handler.containsKey("output") || OutputParameter.valueOf(handler.get("output").toUpperCase()).equals(OutputParameter.CONSOLE)) {
             groupPersonList.forEach((identity, persons) -> {
-                System.out.println(identity + ", " + averageSalary.get(identity) + "\n" + persons);
+                String personInString = persons.stream().map(Person::toString).collect(Collectors.joining("\n"));
+                System.out.println(identity + ", " + averageSalary.get(identity) + "\n" + personInString);
             });
             incorrectEntity.forEach(System.out::println);
         } else {
             if (OutputParameter.valueOf(handler.get("output").toUpperCase()).equals(OutputParameter.FILE)) {
                 StringBuilder sb = new StringBuilder();
-                groupPersonList.forEach((identity, persons) -> sb.append(identity).append(", ").append(averageSalary.get(identity)).append("\n").append(persons).append("\n"));
-                sb.append("Некорректные данные: \n");
+                groupPersonList.forEach((identity, persons) -> {
+                    String personInString = persons.stream().map(Person::toString).collect(Collectors.joining("\n"));
+                            sb.append(identity).append(", ").append(averageSalary.get(identity)).append("\n").append(personInString).append("\n");
+                        }
+                );
                 incorrectEntity.forEach(note -> sb.append(note).append("\n"));
                 String result = sb.toString();
-                String path = handler.get("path" + "output.txt");
+                String path = handler.get("path");
                 WriterResultHandler wh = new WriterResultHandler();
                 wh.write(path, result);
             }

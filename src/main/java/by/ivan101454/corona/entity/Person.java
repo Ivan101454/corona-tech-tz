@@ -51,6 +51,6 @@ public abstract class Person {
         String stringRole = getRole().toString().toLowerCase();
         String upperCaseLiteral = stringRole.substring(0, 1).toUpperCase();
         String endLiteral = stringRole.substring(1);
-        return upperCaseLiteral + endLiteral + ", " + getId() + ", " + getName() + ", " + getSalary() + "\n";
+        return upperCaseLiteral + endLiteral + ", " + getId() + ", " + getName() + ", " + getSalary();
     }
 }

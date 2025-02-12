@@ -12,7 +12,7 @@ public class IncorrectStringCreator {
                 sb.append(", ");
             }
         }
-        return sb + "\n";
+        return sb.toString();
     }
 
 }

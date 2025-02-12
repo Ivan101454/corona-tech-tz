@@ -9,7 +9,8 @@ import java.nio.file.Paths;
 public class WriterResultHandler {
 
     public void write(String path, String result) {
-        File file = Paths.get(path).toFile();
+        String projectPath = System.getProperty("user.dir");
+        File file = Paths.get(projectPath + path + "/output.txt").toFile();
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             bw.write(result);
         } catch (IOException e) {

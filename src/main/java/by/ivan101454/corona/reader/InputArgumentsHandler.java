@@ -31,6 +31,7 @@ public class InputArgumentsHandler {
                 try {
                     SortParameter sortParameter = SortParameter.valueOf(sort.toUpperCase());
                     mapOfArgs.put("sort", sort);
+                    continue;
                 } catch (IllegalArgumentException e) {
                     System.err.println("Ошибка: некорректное значение параметра сортировки" + ". Подробности: " + e.getMessage());
                 }
@@ -41,19 +42,21 @@ public class InputArgumentsHandler {
                     String order = arg.split("=")[1].trim();
                     OrderSort orderSort = OrderSort.valueOf(order.toUpperCase());
                     mapOfArgs.put("order", order);
+                    continue;
                 } catch (IllegalArgumentException e) {
                     System.err.println("Ошибка: некорректное значение порядка сортировки" + ". Подробности: " + e.getMessage());
                 }
-                Matcher matcherOutput = patternOutput.matcher(arg);
-                if (matcherOutput.matches()) {
-                    String output = arg.split("=")[1].trim();
-                    mapOfArgs.put("output", output);
-                }
-                Matcher matcherPath = patternPath.matcher(arg);
-                if (matcherPath.matches()) {
-                    String path = arg.split("=")[1].trim();
-                    mapOfArgs.put("path", path);
-                }
+            }
+            Matcher matcherOutput = patternOutput.matcher(arg);
+            if (matcherOutput.matches()) {
+                String output = arg.split("=")[1].trim();
+                mapOfArgs.put("output", output);
+                continue;
+            }
+            Matcher matcherPath = patternPath.matcher(arg);
+            if (matcherPath.matches()) {
+                String path = arg.split("=")[1].trim();
+                mapOfArgs.put("path", path);
             }
             if ((mapOfArgs.containsKey("output") && !mapOfArgs.containsKey("path")) || (!mapOfArgs.containsKey("output") && mapOfArgs.containsKey("path"))) {
                 try {
