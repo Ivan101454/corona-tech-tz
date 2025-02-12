@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ResultHandler {
 
@@ -26,18 +27,23 @@ public class ResultHandler {
 
     public void getResult() {
         List<Person> people = sortIfRequire();
+        Map<String, Double> averageSalary = people.stream()
+                .collect(Collectors.groupingBy(Person::getIdentification, Collectors.averagingDouble(person -> person.getSalary().doubleValue())));
+        Map<String, List<Person>> groupPersonList = sortIfRequire().stream().collect(Collectors.groupingBy(Person::getIdentification));
         List<String> incorrectEntity = personCreator.getListOfIncorrectEntity();
         if (!handler.containsKey("output") || OutputParameter.valueOf(handler.get("output").toUpperCase()).equals(OutputParameter.CONSOLE)) {
-            people.forEach(System.out::println);
+            groupPersonList.forEach((identity, persons) -> {
+                System.out.println(identity + ", " + averageSalary.get(identity) + "\n" + persons);
+            });
             incorrectEntity.forEach(System.out::println);
         } else {
             if (OutputParameter.valueOf(handler.get("output").toUpperCase()).equals(OutputParameter.FILE)) {
                 StringBuilder sb = new StringBuilder();
-                people.forEach(note -> sb.append(note).append("\n"));
+                groupPersonList.forEach((identity, persons) -> sb.append(identity).append(", ").append(averageSalary.get(identity)).append("\n").append(persons).append("\n"));
                 sb.append("Некорректные данные: \n");
                 incorrectEntity.forEach(note -> sb.append(note).append("\n"));
                 String result = sb.toString();
-                String path = handler.get("path");
+                String path = handler.get("path" + "output.txt");
                 WriterResultHandler wh = new WriterResultHandler();
                 wh.write(path, result);
             }
