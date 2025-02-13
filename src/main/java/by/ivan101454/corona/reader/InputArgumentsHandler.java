@@ -24,13 +24,16 @@ public class InputArgumentsHandler {
     public Map<String, String> handler() {
         Map<String, String> mapOfArgs = new HashMap<>();
         Pattern patternSort = Pattern.compile("--sort=(\\S+)");
+        Pattern patternSortShort = Pattern.compile("-s=(\\S+)");
         Pattern patternOrder = Pattern.compile("--order=(\\S+)");
         Pattern patternOutput = Pattern.compile("--output=(\\S+)");
+        Pattern patternOutputShort = Pattern.compile("-o=(\\S+)");
         Pattern patternPath = Pattern.compile("--path=(.+)");
 
         for (String arg : args) {
             Matcher matcherSort = patternSort.matcher(arg);
-            if (matcherSort.matches()) {
+            Matcher matcherSortShort = patternSortShort.matcher(arg);
+            if (matcherSort.matches() || matcherSortShort.matches()) {
                 String sort = arg.split("=")[1].trim();
                 try {
                     SortParameter sortParameter = SortParameter.valueOf(sort.toUpperCase());
@@ -52,7 +55,8 @@ public class InputArgumentsHandler {
                 }
             }
             Matcher matcherOutput = patternOutput.matcher(arg);
-            if (matcherOutput.matches()) {
+            Matcher matcherOutputShort = patternOutputShort.matcher(arg);
+            if (matcherOutput.matches() || matcherOutputShort.matches()) {
                 String output = arg.split("=")[1].trim();
                 mapOfArgs.put("output", output);
                 continue;
