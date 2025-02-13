@@ -38,7 +38,8 @@ public class ResultHandler {
         if (!handler.containsKey("output") || OutputParameter.valueOf(handler.get("output").toUpperCase()).equals(OutputParameter.CONSOLE)) {
             groupPersonList.forEach((identity, persons) -> {
                 String personInString = persons.stream().map(Person::toString).collect(Collectors.joining("\n"));
-                System.out.println(identity + ", " + averageSalary.get(identity) + "\n" + personInString);
+                int countWorker = persons.size();
+                System.out.println(identity + "\n" + personInString + "\n" + countWorker + ", " + averageSalary.get(identity) + "\n");
             });
             incorrectEntity.forEach(System.out::println);
             System.out.println("Работа завершена");
@@ -47,7 +48,8 @@ public class ResultHandler {
                 StringBuilder sb = new StringBuilder();
                 groupPersonList.forEach((identity, persons) -> {
                     String personInString = persons.stream().map(Person::toString).collect(Collectors.joining("\n"));
-                            sb.append(identity).append(", ").append(averageSalary.get(identity)).append("\n").append(personInString).append("\n");
+                    int countWorker = persons.size();
+                            sb.append(identity).append("\n").append(personInString).append("\n").append(countWorker).append(", ").append(averageSalary.get(identity)).append("\n");
                         }
                 );
                 incorrectEntity.forEach(note -> sb.append(note).append("\n"));
